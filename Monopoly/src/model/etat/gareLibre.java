@@ -1,10 +1,11 @@
 package model.etat;
 
 import model.Case;
+import model.CasePropriete;
 
 public class gareLibre extends EtatCase {
 
-	public gareLibre(Case caseAsso) {
+	public gareLibre(CasePropriete caseAsso) {
 		super(caseAsso);
 		// TODO Auto-generated constructor stub
 	}

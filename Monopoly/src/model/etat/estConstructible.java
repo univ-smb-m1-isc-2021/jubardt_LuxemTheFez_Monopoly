@@ -25,7 +25,7 @@ public class estConstructible extends EtatCase {
 	
 	@Override
 	public void construire() {
-		caseAsso.setNbMaison();
+		/*caseAsso.setNbMaison();*/
 	}
 	
 	
