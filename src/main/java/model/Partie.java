@@ -1,10 +1,7 @@
-package main;
+package model;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
-import model.De;
-import model.Joueur;
-import model.Plateau;
 
 
 public class Partie {

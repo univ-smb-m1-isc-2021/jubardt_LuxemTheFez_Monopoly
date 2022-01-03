@@ -13,12 +13,11 @@
         <version>5.8.2</version>
         <scope>test</scope>
     </dependency>
-
+  
 </dependencies>
 
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>

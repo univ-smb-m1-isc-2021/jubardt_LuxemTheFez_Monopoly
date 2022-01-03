@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import main.Partie;
-
 public class Joueur {
 	private String nom;
 	private int compte;
@@ -19,7 +17,7 @@ public class Joueur {
 		this.partie = partie;
 		nombreGares = 0;
 		nombreServices = 0;
-		compte = 100000;
+		this.compte = 100000;
 		this.proprietees = new ArrayList<>();
 	}
 	
@@ -73,5 +71,14 @@ public class Joueur {
 	public void setNombreServices(int nombreServices) {
 		this.nombreServices = nombreServices;
 	}
+
+	public int getCompte() {
+		return compte;
+	}
+
+	public void setCompte(int compte) {
+		this.compte = compte;
+	}
+	
 	
 }
