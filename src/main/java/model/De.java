@@ -1,5 +1,7 @@
 package model;
 
+import java.security.SecureRandom;
+
 public class De {
 	private int nbFace;
 	private SecureRandom random;
