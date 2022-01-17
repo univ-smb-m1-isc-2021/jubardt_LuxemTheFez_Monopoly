@@ -1,10 +1,10 @@
 package model;
 
 public class Case {
-	private String nom;
+	protected String nom;
 
-	private Case suivante;
-	private Joueur visiteur;
+	protected Case suivante;
+	protected Joueur visiteur;
 
 	public Case(String nom, Case suivante) {
 		this.nom = nom;
@@ -23,7 +23,9 @@ public class Case {
 
 
 	
-	
+	public void traitementJoueur(Joueur j) {
+		System.out.print("le joueur "+j.getNom() +" est sur la case"+ nom);
+	}
 	
 	
 	
@@ -48,18 +50,26 @@ public class Case {
 		return suivante;
 	}
 
+	
+	public void setSuivante(Case suivante) {
+		this.suivante = suivante;
+	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * @return the visiteur
+	 */
+	public Joueur getVisiteur() {
+		return visiteur;
+	}
 
-	
-	
+
+	/**
+	 * @param visiteur the visiteur to set
+	 */
+	public void setVisiteur(Joueur visiteur) {
+		this.visiteur = visiteur;
+	}
+
+
 }

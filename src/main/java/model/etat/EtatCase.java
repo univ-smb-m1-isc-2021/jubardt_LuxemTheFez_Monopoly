@@ -1,13 +1,13 @@
 package model.etat;
 
-import model.CasePropriete;
 import model.Joueur;
+import model.Rue;
 
 public class EtatCase {
-	protected CasePropriete caseAsso;
+	protected Rue rueAsso;
 	
-	public EtatCase(CasePropriete caseAsso) {
-		this.caseAsso = caseAsso;
+	public EtatCase(Rue caseAsso) {
+		this.rueAsso = caseAsso;
 	}
 
 	
@@ -16,10 +16,11 @@ public class EtatCase {
 		return false;
 	}
 	
-	public boolean estProprietaire(Joueur joueur) {
-		return joueur.equals(caseAsso.getProprietaire());
+	public boolean construit(){
+		return false;
 	}
 	
+
 	public void traitementJoueur(Joueur joueur) {
 	}
 	
@@ -33,6 +34,17 @@ public class EtatCase {
 
 	public void construire() {
 			
+	}
+	
+	
+	public void achete(Joueur j) {
+		
+	}
+
+
+
+	public boolean constructible() {
+		return false;
 	}
 
 }

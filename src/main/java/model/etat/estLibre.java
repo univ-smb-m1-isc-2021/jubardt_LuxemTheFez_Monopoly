@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 import model.CasePropriete;
 import model.Joueur;
+import model.Rue;
 
 public class estLibre extends EtatCase {
 
-	public estLibre(CasePropriete caseAsso) {
-		super(caseAsso);
+	public estLibre(Rue rueAsso) {
+		super(rueAsso);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -19,11 +20,15 @@ public class estLibre extends EtatCase {
 	
 	@Override
 	public void traitementJoueur(Joueur joueur) {
-		System.out.println("La case est à vendre");
-		System.out.println("Voulez vous l'acheter : y/n");
+		String res;
+		System.out.println("Vous êtes dans la rue libre " + rueAsso.getNom());
+		System.out.println("Cette rue est à vendre");
+		System.out.println("Vous avez "+joueur.getCompte()+"€ sur votre compte" );
+		System.out.println("Voulez vous l'acheter pour "+rueAsso.getPrixAchat()+"€ : y/n");
 		Scanner inputScanner = new Scanner(System.in);
-		if(inputScanner.equals("y")){
-			int somme = caseAsso.getPrixAchat();
+		res = inputScanner.nextLine();
+		if(res.equals("y")){
+			int somme = rueAsso.getPrixAchat();
 			achete(joueur, somme);
 		}else {
 			System.out.println("Vous avez refusé l'offre");
@@ -34,10 +39,9 @@ public class estLibre extends EtatCase {
 		
 		if(joueur.possedeSomme(somme)) {
 			joueur.payer(somme);
-			joueur.ajouterPropriete(caseAsso);
-			caseAsso.setPropritaire(joueur);
-			System.out.println("Vous êtes le nouveau proprietaire de la case");
-			
+			joueur.ajouterProprieteR(rueAsso);
+			rueAsso.setPropritaire(joueur);
+			System.out.println("Vous êtes le nouveau proprietaire de "+rueAsso.toString()+" !");
 			changementEtat();
 		}else {
 			System.out.println("Vous n'avez pas assez d'argent sur votre compte");
@@ -46,7 +50,7 @@ public class estLibre extends EtatCase {
 		
 	@Override
 	public void changementEtat() {
-		caseAsso.setEtat(new estAchete(caseAsso));
+		rueAsso.setEtat(new estAchete(rueAsso));
 	}
 	
 	@Override

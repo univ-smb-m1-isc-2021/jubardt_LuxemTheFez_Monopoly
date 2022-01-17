@@ -1,16 +1,16 @@
 package model.etat;
 
-import java.security.Provider.Service;
+import model.Service;
 
-import model.CasePropriete;
+import java.util.Scanner;
+
 import model.Joueur;
 
-public class serviceLibre extends EtatCase {
+public class serviceLibre extends EtatService {
 	
 	
-	public serviceLibre(CasePropriete caseAsso) {
-		super(caseAsso);
-		// TODO Auto-generated constructor stub
+	public serviceLibre(Service serviceAsso) {
+		super(serviceAsso);
 	}
 
 	@Override
@@ -18,26 +18,48 @@ public class serviceLibre extends EtatCase {
 		return "Etat: service libre";
 	}
 	
+	@Override
+	public boolean estLibre() {
+		return true;
+	}
+
+	@Override
+	public void changementEtat() {
+		serviceAsso.setEtat(new serviceAchete(serviceAsso));
+	}
+	
+	
+	@Override
 	public void traitementJoueur(Joueur joueur) {
-		if (!estProprietaire(joueur)) {
-			int loyer = calculLoyerService(joueur.lancerDe());
-			if(joueur.possedeSomme(loyer)) {
-				joueur.payer(loyer);
-				caseAsso.payerProprietaire(loyer);
-			}else{
-				System.out.println("Perdu");
-			}
+		String res;
+		System.out.println("Vous êtes dans le service " + serviceAsso.getNom());
+		System.out.println("Ce service est à vendre");
+		System.out.println("Vous avez "+joueur.getCompte()+"€ sur votre compte" );
+		System.out.println("Voulez vous l'acheter pour "+serviceAsso.getPrixAchat()+"€ : y/n");		
+		Scanner inputScanner = new Scanner(System.in);
+		res = inputScanner.nextLine();
+		if(res.equals("y")){
+			int somme = serviceAsso.getPrixAchat();
+			achete(joueur, somme);
+		}else {
+			System.out.println("Vous avez refusé l'offre");
 		}
 	}
 	
-	public int calculLoyerService(int resDe) {
-		int nbServices = caseAsso.getProprietaire().getNombreServices();
-		int loyer = caseAsso.getLoyer();
-		if (nbServices==1) {
-			return 4*resDe*loyer;
-			
+	
+	@Override
+	public void achete(Joueur joueur, int somme) {
+		if(joueur.possedeSomme(somme)) {
+			joueur.payer(somme);
+			joueur.ajouterProprieteS(serviceAsso);
+			serviceAsso.setPropritaire(joueur);
+			System.out.println("Vous êtes le nouveau proprietaire de la case");
+
+			changementEtat();
+		}else {
+			System.out.println("Vous n'avez pas assez d'argent sur votre compte. Perdu !");
 		}
-		return 10*resDe*loyer;
-		
 	}
+	
+
 }

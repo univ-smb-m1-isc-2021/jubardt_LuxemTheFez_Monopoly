@@ -11,7 +11,7 @@ public class De {
 	
 
 	public int lancer() {
-		int randomNum = ThreadLocalRandom.current().nextInt(0, nbFace + 1);
+		int randomNum = ThreadLocalRandom.current().nextInt(1, nbFace + 1);
 		return randomNum;
 	}
 }

@@ -7,33 +7,42 @@ import model.etat.estLibre;
 public class CasePropriete extends Case {
 	private int prixAchat;
 	private int loyer;
-	private Quartier quartier;
 	private Joueur proprietaire;
-	protected EtatCase etat;
 
-	public CasePropriete(String nom, Quartier quartier, Case suivante,int PrixAchat, int loyer) {
+	public CasePropriete(String nom, Case suivante, int prixAchat, int loyer) {
 		super(nom,suivante);
-		this.quartier = quartier;
 		this.proprietaire = null;
 		this.prixAchat = prixAchat;
 		this.loyer = loyer;
-		this.etat = new estLibre(this);
 	}
 
-	public void traitementJoueur(){
-		etat.traitementJoueur(proprietaire);
+	
+	public boolean estLibre() {
+		return false;
 	}
 	
-	public void changementEtat() {
-		etat.changementEtat();
+	@Override
+	public void traitementJoueur(Joueur j){
+		
 	}
-
+	
+	
 	public void payerProprietaire(int loyer) {
 		proprietaire.recevoir(loyer);
 
 	}
 	
-
+	public boolean estProprietaire(Joueur joueur) {
+		return joueur.equals(proprietaire);
+	}
+	
+	public void achete(Joueur j, int somme) {
+		
+	}
+	
+	public void changementEtat() {
+		
+	}
 	
 	//Getters&Setters
 	
@@ -53,10 +62,6 @@ public class CasePropriete extends Case {
 		this.loyer = loyer;
 	}
 
-	public void setEtat(EtatCase etat) {
-		this.etat = etat;
-		
-	}
 
 	public Joueur getProprietaire() {
 		return proprietaire;
@@ -65,10 +70,6 @@ public class CasePropriete extends Case {
 	public void setPropritaire(Joueur joueur) {
 		this.proprietaire = joueur;
 		
-	}
-
-	public Quartier getQuartier() {
-		return quartier;
 	}
 
 }
