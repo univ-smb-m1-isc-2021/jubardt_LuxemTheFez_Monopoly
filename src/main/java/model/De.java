@@ -1,17 +1,18 @@
 package model;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class De {
 	private int nbFace;
+	private SecureRandom random;
 	
 	public De(int nbFace) {
 		this.nbFace = nbFace;
+		random = new SecureRandom(); // Compliant for security-sensitive use cases
 	}
 	
 
 	public int lancer() {
-		int randomNum = ThreadLocalRandom.current().nextInt(1, nbFace + 1);
+		int randomNum = random.nextInt(nbFace)+1;
+		//int randomNum = ThreadLocalRandom.current().nextInt(1, nbFace + 1);
 		return randomNum;
 	}
 }
